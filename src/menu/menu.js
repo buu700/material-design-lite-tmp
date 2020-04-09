@@ -116,7 +116,12 @@
                       this.element_.getAttribute('data-mdl-for');
       var forEl = null;
       if (forElId) {
-        forEl = document.getElementById(forElId);
+        var elementRoot = document;
+        try {
+            elementRoot = this.element_.getRootNode();
+        }
+        catch (_) {}
+        forEl = elementRoot.getElementById(forElId);
         if (forEl) {
           this.forElement_ = forEl;
           forEl.addEventListener('click', this.handleForClick_.bind(this));

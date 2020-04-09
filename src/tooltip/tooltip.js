@@ -124,7 +124,13 @@
           this.element_.getAttribute('data-mdl-for');
 
       if (forElId) {
-        this.forElement_ = document.getElementById(forElId);
+        var elementRoot = document;
+        try {
+            elementRoot = this.element_.getRootNode();
+        }
+        catch (_) {}
+        forEl = elementRoot.getElementById(forElId);
+        this.forElement_ = elementRoot.getElementById(forElId);
       }
 
       if (this.forElement_) {
